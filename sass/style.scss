@@ -4,6 +4,10 @@
 
 $color-light: #fff;
 $color-dark: #444;
+$c-dg: #252525;
+$c-y: #FEDA00;
+$c-dg2: #282828;
+$b-992: 992px;
 
 $font-logo: "Sacramento", cursive;
 $font-header: "Oswald", sans-serif;
@@ -18,9 +22,9 @@ $font-text: "Source Sans Pro", sans-serif;
 }
 
 body {
-    background: $color-light;
+    background: $c-dg;
     font-family: $font-text;
-    color: $color-dark;
+    color: $color-light;
     font-weight: 300;
     font-size: 16px;
     line-height: 1.7;
@@ -39,7 +43,7 @@ body {
     span {
         text-transform: none;
         font-weight: 400;
-        color: lighten($color-dark, 20%);
+        color: lighten($color-light, 20%);
     }
 }
 
@@ -48,6 +52,9 @@ body {
 .wrapper {
     display: flex;
     margin-left: 10px;
+    @media screen and (max-width: $b-992) {
+        flex-direction: column;
+    }
 }
 
 .sidebar {
@@ -56,14 +63,15 @@ body {
 
 .posts {
     flex: 2 0 0;
+    position: relative;
 }
 
 .sidebar,
 .posts {
-    background: $color-light;
+    background: $c-dg2;
     margin-right: 10px;
     padding: 40px;
-    border: 1px solid $color-dark;
+    border: 1px solid $color-light;
     border-radius: 5px;
 }
 
@@ -75,6 +83,7 @@ body {
     font-size: 104px;
     line-height: 1;
     text-align: center;
+    color: $c-y;
 }
 
 /* Lists */
@@ -83,14 +92,28 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    a {
+        color: $c-y;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
     .active {
         font-weight: bold;
+    }
+    @media screen and (max-width: $b-992) {
+        li {
+            display: inline-block;
+            padding: 5px;
+        }
     }
 }
 
 .list-horizontal {
     li {
         display: inline-block;
+        padding: 5px;
     }
 }
 
@@ -106,8 +129,15 @@ body {
 
 .post {
     display: none;
+    opacity: 0;
+    animation: posts-switch forwards 1s ease-in-out;
+    transition: all 0.5s;
     &.active {
         display: block;
+        opacity: 1;
+        animation: posts-active forwards 1s ease-in-out;
+        z-index: 9;
+        transition: all 0.5s;
     }
 }
 
@@ -121,3 +151,15 @@ body {
         margin: 0 10px 0 0;
     }
 }
+
+@keyframes posts-switch {
+    0%   {opacity: 1;}
+    25%  {opacity: 0; display: none;}
+    50%  {display: block;}
+    100% {opacity: 1;}
+  }
+  @keyframes posts-active {
+    0%   {opacity: 0; display: none;}
+    50%  {display: block;}
+    100% {opacity: 1;}
+  }
