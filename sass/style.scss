@@ -40,6 +40,7 @@ body {
     text-transform: uppercase;
     font-family: $font-header;
     font-weight: 600;
+
     span {
         text-transform: none;
         font-weight: 400;
@@ -92,13 +93,16 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
+
     a {
         color: $c-y;
         text-decoration: none;
+
         &:hover {
             text-decoration: underline;
         }
     }
+
     .active {
         font-weight: bold;
     }
@@ -132,6 +136,7 @@ body {
     opacity: 0;
     animation: posts-switch forwards 1s ease-in-out;
     transition: all 0.5s;
+
     &.active {
         display: block;
         opacity: 1;
@@ -147,19 +152,41 @@ body {
 
 .post-tags {
     display: flex;
+
     p {
         margin: 0 10px 0 0;
     }
 }
 
 @keyframes posts-switch {
-    0%   {opacity: 1;}
-    25%  {opacity: 0; display: none;}
-    50%  {display: block;}
-    100% {opacity: 1;}
-  }
-  @keyframes posts-active {
-    0%   {opacity: 0; display: none;}
-    50%  {display: block;}
-    100% {opacity: 1;}
-  }
+    0%   {
+        opacity: 1;
+    }
+
+    25%  {
+        opacity: 0;
+        display: none;
+    }
+
+    50%  {
+        display: block;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes posts-active {
+    0%   {
+        opacity: 0;
+        display: none;
+    }
+
+    50%  {
+        display: block;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
