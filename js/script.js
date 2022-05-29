@@ -107,6 +107,8 @@ function generateTitleLinks(){
 
     const articles = document.querySelectorAll(optArticleSelector);
 
+    let html = '';
+
     for (let article of articles) {
 
         /* get the article id */
@@ -124,14 +126,13 @@ function generateTitleLinks(){
         const linkHTML = '<li><a href="#' + articleID + '"><span>' + articleTitle + '</span></a></li>';
         console.log('linkHTML:', linkHTML);
 
-        /* insert link into titleList */
-        
-        /* titleList.innerHTML = titleList.innerHTML + linkHTML;
-        console.log('titleList:', titleList);*/
+        /* insert link into html variable */
 
-        titleList.insertAdjacentHTML('beforeend', linkHTML);
-        console.log('titleList:', titleList);
+        html = html + linkHTML;
+        console.log('html:', html);
     }
+
+    titleList.innerHTML = html;
 }
 
 generateTitleLinks();
