@@ -121,6 +121,63 @@ body {
     }
 }
 
+/* sidebar tags */
+
+.sidebar {
+    .tags {
+        text-align: center;
+        min-height: 180px;
+        @media screen and (max-width: $b-992) {
+            min-height: 110px;
+        }
+        li {
+            display: inline;
+            padding: 5px;
+            a {text-decoration: none;}
+        }
+        .tag-size-5 {
+            font-size: 180%;
+            transition: all 0.5s;
+            &:hover {
+                font-size: 200%;
+                transition: all 0.5s;
+            }
+        }
+        .tag-size-4 {
+            font-size: 160%;
+            transition: all 0.5s;
+            &:hover {
+                font-size: 180%;
+                transition: all 0.5s;
+            }
+        }
+        .tag-size-3 {
+            font-size: 140%;
+            transition: all 0.5s;
+            &:hover {
+                font-size: 160%;
+                transition: all 0.5s;
+            }
+        }
+        .tag-size-2 {
+            font-size: 120%;
+            transition: all 0.5s;
+            &:hover {
+                font-size: 140%;
+                transition: all 0.5s;
+            }
+        }
+        .tag-size-1 {
+            font-size: 100%;
+            transition: all 0.5s;
+            &:hover {
+                font-size: 120%;
+                transition: all 0.5s;
+            }
+        }
+    }
+}
+
 /* Authors */
 
 .authors {

@@ -89,6 +89,9 @@ const optTitleListSelector = '.titles';
 const optArticleTagsSelector = '.post-tags .list';
 const optArticleAuthorSelector = '.post-author';
 const optTagsListSelector = '.tags.list';
+const optCloudClassCount = 5;
+let optCloudClassPrefix = 'tag-size-';
+
 
 function generateTitleLinks(customSelector = ''){
 
@@ -355,6 +358,50 @@ function addClickListenersToAuthors(){
 
 addClickListenersToAuthors();
 
+/* calculate tags */
+
+function calculateTagsParams(tags = ''){
+
+    console.log('tags: ', tags);
+
+    const params = {max: 0, min: 999999};
+    console.log('params: ', params);
+
+    for(let tag in tags){
+        console.log(tag + ' is used ' + tags[tag] + ' times');
+        if(tags[tag] > params.max){
+            params.max = tags[tag];
+            console.log('params.max: ', params.max);
+        } else if(tags[tag] < params.min){
+            params.min = tags[tag];
+            console.log('params.min: ', params.min);
+        }
+
+    }
+    return params;
+
+}
+
+/* calculate tag class */
+
+function calculateTagClass(count = '', params = ''){
+
+    console.log('count: ', count);
+    console.log('params: ', params);
+
+    const normalizedCount = count - params.min;
+    console.log('normalizedCount: ', normalizedCount);
+    const normalizedMax = params.max - params.min;
+    console.log('normalizedMax: ', normalizedMax);
+    const percentage = normalizedCount / normalizedMax;
+    console.log('percentage: ', percentage);
+    const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+    console.log('classNumber: ', classNumber);
+    const tagClass = optCloudClassPrefix + classNumber;
+
+    return tagClass;
+}
+
 
 /* generating list of tags in aside and under article */
 
@@ -442,6 +489,11 @@ function generateTags(){
     //tagList.innerHTML = allTags.join(' ');
     console.log('allTags:', allTags);
 
+    /* [NEW] create calculation variable */
+
+    const tagsParams = calculateTagsParams(allTags);
+    console.log('tagsParams: ', tagsParams);
+
     /* [NEW] create variable fo all links in HTML code */
     let allTagsHTML = '';
 
@@ -451,8 +503,14 @@ function generateTags(){
 
         /* [NEW] generate code of a link and add it to allTagsHTML */
 
+        // const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '">' + tag + '</a> (' + allTags[tag] + ')</li>';
+        const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '">' + tag + '</a></li> ';
+        console.log('tagLinkHTML: ', tagLinkHTML);
+
+        allTagsHTML += tagLinkHTML;
+
         // allTagsHTML += tag + ' (' + allTags[tag] + ')';
-        allTagsHTML += '<li><a href="#tag-' + tag + '">' + tag + '</a> (' + allTags[tag] + ')</li>';
+        // allTagsHTML += '<li><a href="#tag-' + tag + '">' + tag + '</a> (' + allTags[tag] + ')</li>';
 
         console.log('allTagsHTML:', allTagsHTML);
     }
