@@ -24,7 +24,18 @@ const select = {
         tags: '.tags.list',
         authors: '.authors.list',
     },
+    anchors: {
+        tag: '#tag-',
+        author: '#author-'
+    }
 };
+
+const templates = {
+    articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+    tagLink: Handlebars.compile(document.querySelector('#template-article-tag').innerHTML),
+    authorLink: Handlebars.compile(document.querySelector('#template-article-author').innerHTML)
+};
+
 
 function titleClickHandler(event){
     event.preventDefault();
@@ -126,8 +137,10 @@ function generateTitleLinks(customSelector = ''){
         const articleTitle = article.querySelector(select.article.title).innerHTML;
         console.log('articleTitle:', articleTitle);
 
-        /* create HTML of the link */
-        const linkHTML = '<li><a href="#' + articleID + '">' + articleTitle + '</a></li>';
+        /* create HTML of the link with handlebars */
+        //const linkHTML = '<li><a href="#' + articleID + '">' + articleTitle + '</a></li>';
+        const linkHTMLData = {id: articleID, title: articleTitle};
+        const linkHTML = templates.articleLink(linkHTMLData);
         console.log('linkHTML:', linkHTML);
 
         /* insert link into html variable */
@@ -254,7 +267,13 @@ function generateAuthors(){
         console.log('articleDataAuthorName:', articleDataAuthorName);
 
         /* create html link */
-        let authorHTML = '<a href="#author-' + articleDataAuthor + '">' + articleDataAuthorName + '</a>';
+        //let authorHTML = '<a href="#author-' + articleDataAuthor + '">' + //// articleDataAuthorName + '</a>';
+
+        /* generate HTML of the link with handlebars */
+
+        const linkHTMLData = {id: select.anchors.author + articleDataAuthor, author: articleDataAuthorName};
+        const authorHTML = templates.authorLink(linkHTMLData);
+
 
         /* insert HTML link into the author wrapper */
         AuthorList.innerHTML = authorHTML;
@@ -477,9 +496,12 @@ function generateTags(){
         for (let tag of tags) {
             console.log('tag: ', tag);
 
-            /* generate HTML of the link */
+            /* generate HTML of the link with handlebars */
 
-            const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+            const linkHTMLData = {id: select.anchors.tag + tag, tag: tag};
+            const linkHTML = templates.tagLink(linkHTMLData);
+
+            //const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
             console.log('linkHTML:', linkHTML);
 
             /* add generated code to html variable */
