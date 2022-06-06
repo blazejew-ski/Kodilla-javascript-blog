@@ -21,5 +21,4 @@ html / css / js / handlebars
 
 # Preview
 is available on github pages:\
-https://github.com/blazejew-ski/javascript-blog/deployments/activity_log?environment=github-pages
-
+https://blazejew-ski.github.io/javascript-blog/
