@@ -317,7 +317,7 @@ function generateAuthors(){
             authorLink: select.anchors.author + author,
             author: articleDataAuthorName,
             count: allAuthors[author]
-          });
+        });
         console.log('allAuthorsData:', allAuthorsData);
     }
 
@@ -577,7 +577,7 @@ function generateTags(){
             tag: tag,
             count: allTags[tag],
             className: calculateTagClass(allTags[tag], tagsParams)
-          });
+        });
 
         // allTagsHTML += tag + ' (' + allTags[tag] + ')';
         // allTagsHTML += '<li><a href="#tag-' + tag + '">' + tag + '</a> (' + allTags[tag] + ')</li>';
