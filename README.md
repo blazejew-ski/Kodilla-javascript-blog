@@ -1,10 +1,10 @@
 # javascript-blog
 Based on Kodilla javascript course.
 
-#Created with
+# Created with
 html / css / js
 
-#Npm packages in use:
+# Npm packages in use:
 "autoprefixer": "^10.2.4",
 "browser-sync": "^2.27.9",
 "eslint": "^8.16.0",
@@ -19,7 +19,7 @@ html / css / js
 "stylelint": "^14.8.5",
 "stylelint-scss": "^4.2.0"
 
-#Preview
+# Preview
 is available on github pages:
 https://github.com/blazejew-ski/javascript-blog/deployments/activity_log?environment=github-pages
 
