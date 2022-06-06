@@ -2,7 +2,7 @@
 Based on Kodilla javascript course.
 
 # Created with
-html / css / js
+html / css / js / handlebars
 
 # Npm packages in use:
 "autoprefixer": "^10.2.4",\
