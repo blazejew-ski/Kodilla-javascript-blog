@@ -17,7 +17,7 @@ html / css / js
 "postcss-cli": "^8.3.1",\
 "sass": "^1.50.1",\
 "stylelint": "^14.8.5",\
-"stylelint-scss": "^4.2.0"\
+"stylelint-scss": "^4.2.0"
 
 # Preview
 is available on github pages:\
